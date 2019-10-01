@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.zahoor.activities.AdminDashboardActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/admin_dashboard"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageButton
+            android:id="@+id/manageBooking"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:contentDescription="@string/manage_booking"
+            app:srcCompat="@drawable/booking"
+            android:layout_marginStart="40dp" />
+
+        <ImageButton
+            android:id="@+id/manageUser"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="75dp"
+            android:contentDescription="@string/manage_users"
+            app:srcCompat="@drawable/users" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageButton
+            android:id="@+id/manageBus"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:contentDescription="@string/manage_buses"
+            app:srcCompat="@drawable/bus" />
+
+        <ImageButton
+            android:id="@+id/manageTour"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="75dp"
+            android:contentDescription="@string/manage_tour"
+            app:srcCompat="@drawable/tourplace" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageButton
+            android:id="@+id/manageTicket"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:contentDescription="@string/manage_ticket"
+            app:srcCompat="@drawable/ticket" />
+
+        <ImageButton
+            android:id="@+id/managePackage"
+            android:layout_width="105dp"
+            android:layout_height="98dp"
+            android:layout_marginLeft="75dp"
+            android:contentDescription="@string/manage_package"
+            app:srcCompat="@drawable/managepackage" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/manageHotel"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/manage_hotel"
+        app:srcCompat="@drawable/hotel" />
+</LinearLayout>
