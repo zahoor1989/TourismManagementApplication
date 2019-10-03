@@ -1,10 +1,16 @@
 package com.example.zahoor.activities;
 
 import adapters.UserPlacesAdapter;
+
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +28,17 @@ public class UserViewPlacesActivity extends AppCompatActivity implements UserPla
     private String PLACE_ID;
     RecyclerView recyclerView;
     RecyclerView.Adapter placesAdapter;
-
+    RecyclerView.LayoutManager layoutManager;
+    //var for drawer
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggleActionBar;
+    private NavigationView nv;
 
     public void onItemClicked(int index){
      //        tPlaces.get(index).getId();
         Toast.makeText(this,"You Clicked"+tPlaces.get(index).getName(), Toast.LENGTH_SHORT).show();
     }
-    RecyclerView.LayoutManager layoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +63,44 @@ public class UserViewPlacesActivity extends AppCompatActivity implements UserPla
         placesAdapter = new UserPlacesAdapter(this,tPlaces);
         recyclerView.setAdapter(placesAdapter);
 
+        //generating drawer look and feel
+        drawerLayout = (DrawerLayout)findViewById(R.id.activity_user_view_places);
+        toggleActionBar = new ActionBarDrawerToggle(this, drawerLayout,R.string.Open, R.string.Close);
+
+        drawerLayout.addDrawerListener(toggleActionBar);
+        toggleActionBar.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("MyTitle");
+
+        //navigation view
+        nv = (NavigationView) findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.account:
+                        Toast.makeText(UserViewPlacesActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+                    case R.id.settings:
+                        Toast.makeText(UserViewPlacesActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                    case R.id.mycart:
+                        Toast.makeText(UserViewPlacesActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    default:
+                        return true;
+                }
+                return true;
+            }
+        });
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(toggleActionBar.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

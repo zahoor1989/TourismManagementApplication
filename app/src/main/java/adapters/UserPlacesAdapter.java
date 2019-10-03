@@ -1,12 +1,16 @@
 package adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.zahoor.activities.R;
 import com.example.zahoor.model.TourPlace;
@@ -32,14 +36,16 @@ public class UserPlacesAdapter extends RecyclerView.Adapter<UserPlacesAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgView;
-        TextView placeName, placeAdd;
+        ImageView placeImage;
+        TextView placeName, placeAdd,temperature,distance;
+        RatingBar rating;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgView = itemView.findViewById(R.id.placeImage);
+            placeImage = itemView.findViewById(R.id.placeImage);
             placeName = itemView.findViewById(R.id.placeName);
             placeAdd = itemView.findViewById(R.id.placeAdd);
-
+            temperature = itemView.findViewById(R.id.temperature);
+            distance = itemView.findViewById(R.id.distance);
             //setting onClickListener
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -52,7 +58,7 @@ public class UserPlacesAdapter extends RecyclerView.Adapter<UserPlacesAdapter.Vi
     @NonNull
     @Override
     public UserPlacesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_list_view_layout,viewGroup,false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_places_adapter_layout,viewGroup,false);
         return new ViewHolder(v);
     }
 
@@ -62,20 +68,26 @@ public class UserPlacesAdapter extends RecyclerView.Adapter<UserPlacesAdapter.Vi
         vHolder.itemView.setTag(tPlaces.get(i));
         Context context = vHolder.itemView.getContext();
         //name of name of image
-        String imageName = Integer.toString(tPlaces.get(i).getId());
-        int image_id = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
-        if(image_id>0){
-            vHolder.imgView.setImageResource(image_id);
-        }else{
-            vHolder.imgView.setImageResource(R.drawable.image);
-        }
+        String imageName = tPlaces.get(i).getImage();
+        vHolder.placeImage.setImageBitmap(StringToBitMap(imageName));
         //adding name to view
         vHolder.placeName.setText(tPlaces.get(i).getName());
-
+        vHolder.placeAdd.setText(tPlaces.get(i).getAdd());
     }
 
     @Override
     public int getItemCount() {
         return tPlaces.size();
+    }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte= Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

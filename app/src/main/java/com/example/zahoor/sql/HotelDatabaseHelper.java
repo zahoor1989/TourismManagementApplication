@@ -52,7 +52,7 @@ public class HotelDatabaseHelper {
         db.close();
         return message;
     }
-    public List<Hotel> getAllHotel() {
+    public ArrayList<Hotel> getAllHotel() {
         // array of columns to fetch
         String[] columns = {
                 mainDb.COLUMN_HOTEL_ID,
@@ -70,7 +70,7 @@ public class HotelDatabaseHelper {
         // sorting orders
         String sortOrder =
                 mainDb.COLUMN_HOTEL_ID + " ASC";
-        List<Hotel> hotelList = new ArrayList<Hotel>();
+        ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 
         SQLiteDatabase db = mainDb.getReadableDatabase();
 

@@ -39,7 +39,6 @@
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/marker" />
-
                 <TextView
                     android:id="@+id/placeAdd"
                     android:layout_width="match_parent"

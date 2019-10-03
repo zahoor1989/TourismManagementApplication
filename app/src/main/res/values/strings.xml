@@ -36,7 +36,6 @@
     <string name="select_video">Select Video</string>
     <string name="location_latitude">Location Latitude</string>
     <string name="location_longitude">Location Longitude</string>
-    <string name="select_image">Select Image</string>
     <string name="manage_booking">Manage Booking</string>
     <string name="admin_dashboard">Admin Dashboard</string>
     <string name="manage_users">Manage Users</string>
@@ -62,4 +61,14 @@
     <string name="transport_name">Transport Name</string>
     <string name="register_a_ticket">Register A Ticket</string>
     <string name="view_ticket">View Ticket</string>
+    <string name="hotel_image">Hotel Image</string>
+    <string name="price_per_night">Price per Night</string>
+    <string name="hotel_name">Hotel Name</string>
+    <string name="hotel_address">Hotel Address</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="select_image">Select Image</string>
+    <string name="tourist_place_name">Tourist Place Name</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
 </resources>

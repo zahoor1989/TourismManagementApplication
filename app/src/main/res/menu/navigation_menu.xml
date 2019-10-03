@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/account"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="My Account"/>
+    <item android:id="@+id/settings"
+        android:icon="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:title="Settings"/>
+    <item android:id="@+id/mycart"
+        android:icon="@drawable/common_google_signin_btn_text_dark_normal"
+        android:title="My Cart"/>
+</menu>

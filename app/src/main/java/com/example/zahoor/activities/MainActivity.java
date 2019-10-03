@@ -1,15 +1,17 @@
 package com.example.zahoor.activities;
 
-import adapters.UserPlacesAdapter;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,14 +22,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.zahoor.model.TourPlace;
-import com.example.zahoor.sql.TouristPlaceDatabase;
+import android.preference.PreferenceManager;
 import com.example.zahoor.sql.UserDatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.example.zahoor.activities.R.id.mainActivityLayout;
 
@@ -62,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         userPassword = (TextView) findViewById(R.id.userPassword);
         registerLink = (TextView) findViewById(R.id.registerLink);
 
+        //Saving session
+        SharedPreferences sessionSetting = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final SharedPreferences.Editor sessionEditor = sessionSetting.edit();
+
+
         //check all permission and if need then AppCompatActivity will request for permission
         if(checkAndRequestPermission()){
         //login Activity
@@ -75,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     message ="Login Failed";
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                 } else {
-                    message ="Login successfully";
-                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                    sessionEditor.putString("username",email);
+                    sessionEditor.putString("password",password);
                     if(email.equals("zahoor_ahmed143@hotmail.com")){
                         //Calling the add tour place activity
                         Intent intent = new Intent(v.getContext(),AdminDashboardActivity.class);
@@ -86,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(v.getContext(),UserViewPlacesActivity.class);
                         startActivity(intent);
                     }
+                    //displaying message if loggged in
+                    message ="Login successfully";
+                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
